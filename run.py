@@ -40,8 +40,7 @@ experiment_model = VAEXperiment(model_constructor,
                                 config['exp_params'])
 
 data = VAEDataset(**config["data_params"], pin_memory=len(config['trainer_params']['gpus']) != 0)
-
-data.setup(config['data_params']['data_name'])
+data.setup(data_name=config['data_params']['data_name'])
 runner = Trainer(logger=tb_logger,
                  callbacks=[
                      LearningRateMonitor(),
