@@ -56,7 +56,7 @@ class Numpy_Dataset(Dataset):
 
     def __init__(self, data_name, transform=None, is_train=True):
 
-        self.data_folder = '/cs/labs/yedid/jonkahana/experiments/lord/preprocess'
+        self.data_folder = '/hdd/projects/disentanglement/lord/preprocess'
         if is_train:
             self.data_name = data_name
         else:
@@ -227,3 +227,9 @@ class VAEDataset(LightningDataModule):
             shuffle=True,
             pin_memory=self.pin_memory,
         )
+
+
+if __name__ == '__main__':
+    data = Numpy_Dataset('cars3d_train')
+
+    a = 1
