@@ -27,8 +27,10 @@ with open(args.filename, 'r') as file:
     except yaml.YAMLError as exc:
         print(exc)
 
-tb_logger = TensorBoardLogger(save_dir=config['logging_params']['save_dir'],
-                              name=config['model_params']['name'], )
+tb_logger = TensorBoardLogger(save_dir=os.path.join(config['logging_params']['save_dir'],
+                                                    config['model_params']['name']),
+                              name=config['logging_params']['name']
+                              )
 
 # For reproducibility
 seed_everything(config['exp_params']['manual_seed'], True)
