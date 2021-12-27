@@ -80,7 +80,7 @@ class Numpy_Dataset(Dataset):
         img = self.transform(pil_img)
         if single_channel:
             img = torch.mean(img, dim=0)
-        return img, torch.tensor(self.target[idx])
+        return img, torch.tensor(self.target[idx].astype(np.uint8))
 
     def __len__(self):
         return len(self.target)
@@ -235,3 +235,8 @@ class VAEDataset(LightningDataModule):
             shuffle=True,
             pin_memory=self.pin_memory,
         )
+
+# if __name__ == '__main__':
+#     data = Numpy_Dataset('smallnorb_fully_separated_test')
+#     b = data[0]
+#     a = 1
