@@ -75,7 +75,7 @@ class Numpy_Dataset(Dataset):
         if np_image.shape[-1] == 1:
             single_channel = True
             np_image = np.concatenate([np_image] * 3, axis=-1)
-        np_image = (np_image*255.).astype(np.uint8)
+        np_image = (np_image * 255).astype(np.uint8)
         pil_img = PIL.Image.fromarray(np_image)
         img = self.transform(pil_img)
         if single_channel:
