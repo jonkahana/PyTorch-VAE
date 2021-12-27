@@ -234,9 +234,3 @@ class VAEDataset(LightningDataModule):
             shuffle=True,
             pin_memory=self.pin_memory,
         )
-
-
-if __name__ == '__main__':
-    data = Numpy_Dataset('cars3d_train')
-
-    a = 1
