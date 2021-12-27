@@ -1,6 +1,6 @@
 model_params:
   name: 'BetaTCVAE'
-  in_channels: 3
+  in_channels: 1
   latent_dim: 10
   anneal_steps: 10000
   alpha: 1.
