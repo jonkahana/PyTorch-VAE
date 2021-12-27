@@ -79,7 +79,7 @@ class Numpy_Dataset(Dataset):
         pil_img = PIL.Image.fromarray(np_image)
         img = self.transform(pil_img)
         if single_channel:
-            img = torch.mean(img, dim=0)
+            img = torch.mean(img, dim=0).unsqueeze(0)
         return img, torch.tensor(self.target[idx].astype(np.uint8))
 
     def __len__(self):
