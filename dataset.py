@@ -69,9 +69,15 @@ class Numpy_Dataset(Dataset):
             self.transform = torchvision.transforms.ToTensor()
 
     def __getitem__(self, idx):
-        img = self.images[idx]
-        img = PIL.Image.fromarray(img)
-        img = self.transform(img)
+        np_image = self.images[idx]
+        single_channel = False
+        if np_image.shape[-1] == 1:
+            single_channel = True
+            np_image = np.concatenate([np_image] * 3, axis=-1)
+        pil_img = PIL.Image.fromarray(np_image)
+        img = self.transform(pil_img)
+        if single_channel:
+            img = torch.mean(img, dim=0)
         return img, torch.tensor(self.target[idx])
 
     def __len__(self):
